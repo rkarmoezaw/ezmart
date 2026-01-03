@@ -1,0 +1,20 @@
+POST   /api/auth/register
+POST   /api/auth/login
+GET    /api/auth/profile
+
+GET    /api/products
+GET    /api/products/:id
+POST   /api/products   (admin)
+PUT    /api/products/:id
+DELETE /api/products/:id
+
+POST   /api/cart/add
+PUT    /api/cart/update
+DELETE /api/cart/remove
+GET    /api/cart
+
+POST   /api/orders
+GET    /api/orders/my
+GET    /api/orders/:id
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTU3ZmM0YTE3ODkzNjZiZjk4MGEwZTUiLCJuYW1lIjoiUiBLYXIgTW9lIFphdyIsImVtYWlsIjoicmthci5tb2V6YXcuMjAwNEBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTc2NzM3Mzg5OCwiZXhwIjoxNzY3NDYwMjk4fQ.NtYIchcGZPlD_gubNLbCkpuT2ysy2cCjcdjTne4_zFI
