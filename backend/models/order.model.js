@@ -10,15 +10,7 @@ const orderItemSchema = new mongoose.Schema(
     name: { type: String, required: true },
     quantity: { type: Number, required: true },
     price: { type: Number, required: true },
-  },
-  { _id: false }
-);
-
-const shippingAddressSchema = new mongoose.Schema(
-  {
-    street: { type: String, required: true },
-    city: { type: String, required: true },
-    country: { type: String, required: true },
+    image: [String],
   },
   { _id: false }
 );
@@ -27,7 +19,6 @@ const orderSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     orderItems: [orderItemSchema],
-    shippingAddress: shippingAddressSchema,
     paymentMethod: { type: String, required: true },
     paymentStatus: {
       type: String,
@@ -45,3 +36,5 @@ const orderSchema = new mongoose.Schema(
 );
 
 export default mongoose.model("Order", orderSchema);
+
+//Need to recheck

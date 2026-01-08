@@ -1,7 +1,8 @@
+import { generateAccessToken, generateRefreshToken } from "../utils/token.js";
 import { sendSuccess, sendError } from "../utils/responseHandler.js";
 import User from "../models/user.model.js";
-import { generateAccessToken, generateRefreshToken } from "../utils/token.js";
 
+//Register
 export async function register(req, res) {
   const { name, email, password } = req.body;
   try {
@@ -35,6 +36,7 @@ export async function register(req, res) {
   }
 }
 
+//Login
 export async function login(req, res) {
   const { email, password } = req.body;
   try {
@@ -57,7 +59,7 @@ export async function login(req, res) {
         maxAge: 7 * 24 * 60 * 60 * 1000,
       });
 
-      return sendSuccess(
+      sendSuccess(
         res,
         {
           name: user.name,
@@ -76,6 +78,7 @@ export async function login(req, res) {
   }
 }
 
+//Profile
 export async function profile(req, res) {
   try {
     const user = req.user;
@@ -101,6 +104,7 @@ export async function profile(req, res) {
   }
 }
 
+//RefreshToken
 export async function refreshToken(req, res) {
   const refreshToken = req.cookies.refreshToken;
 
@@ -139,6 +143,7 @@ export async function refreshToken(req, res) {
   }
 }
 
+//Logout
 export async function logout(req, res) {
   const token = req.cookies.refreshToken;
   const user = await User.findOne({ refreshTokens: token });

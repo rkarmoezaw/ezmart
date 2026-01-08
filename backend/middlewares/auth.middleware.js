@@ -1,7 +1,8 @@
-import User from "../models/user.model.js";
-import { sendError } from "../utils/responseHandler.js";
 import jwt from "jsonwebtoken";
+import { sendError } from "../utils/responseHandler.js";
+import User from "../models/user.model.js";
 
+//Protect
 export async function protect(req, res, next) {
   let token;
 
@@ -26,5 +27,17 @@ export async function protect(req, res, next) {
     next();
   } catch (error) {
     sendError(res, "Not authorized, token invalid", 401);
+  }
+}
+
+//IsAdmin
+export async function isAdmin(req, res, next) {
+  try {
+    const user = await User.findById(req.user._id);
+    if (user && user.role === "admin") next();
+    else
+      return sendError(res, "Access denied. Admin privileges required.", 403);
+  } catch (error) {
+    sendError(res, "Internal server error");
   }
 }
